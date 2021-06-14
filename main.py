@@ -1,7 +1,6 @@
 import argparse
 import json
 import logging
-import os
 
 import requests
 
@@ -130,10 +129,7 @@ if __name__ == '__main__':
 
     params = parser.parse_args()
 
-    root_dir = os.path.abspath(os.path.join(__file__, '..'))
-    output_file = os.path.join(root_dir, params.output_file)
-
-    output = load_output(output_file)
+    output = load_output(params.output_file)
     parsed_list, distribution = parse(output)
     if parsed_list:
         slack_message = build_slack_message(parsed_list, distribution, params.repo_name)
