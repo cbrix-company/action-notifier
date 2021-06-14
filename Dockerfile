@@ -1,5 +1,5 @@
 # Container image that runs your code
-FROM alpine:3.8-alpine3.13
+FROM python:3.8-alpine3.13
 
 RUN pip install -r requirements.txt --no-cache-dir
 
