@@ -59,7 +59,7 @@ def build_slack_message(parsed_list, distribution, repo_name):
         f"*Run time:* 9/6/2021 18:20:12\n"
         f"*Output:* Link\n"
         f'*Findings:* High ({distribution["HIGH"]}), Medium ({distribution["MEDIUM"]}), Low ({distribution["LOW"]})\n\n\n'
-        f"*Top 2 Findings:*"
+        f"*Top Findings:*"
     )
 
     msg_data = [
