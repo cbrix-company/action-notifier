@@ -50,13 +50,13 @@ def parse(output):
 
     sorted_by_severity = sorted(results, key = lambda x: x[1], reverse=True)
     sorted_by_confidence = sorted(sorted_by_severity, key = lambda x: x[2], reverse=True)
-    return sorted_by_confidence[:2], distribution
+    return sorted_by_confidence[:2], distribution, output['generated_at']
 
-def build_slack_message(parsed_list, distribution, repo_name):
+def build_slack_message(parsed_list, distribution, repo_name, run_time):
     header = (
         f"*Security Control:* Bandit\n"
         f"*Repo:* {repo_name}\n"
-        f"*Run time:* 9/6/2021 18:20:12\n"
+        f"*Run time:* {run_time}\n"
         f"*Output:* Link\n"
         f'*Findings:* High ({distribution["HIGH"]}), Medium ({distribution["MEDIUM"]}), Low ({distribution["LOW"]})\n\n\n'
         f"*Top Findings:*"
@@ -130,7 +130,7 @@ if __name__ == '__main__':
     params = parser.parse_args()
 
     output = load_output(params.output_file)
-    parsed_list, distribution = parse(output)
+    parsed_list, distribution, run_time = parse(output)
     if parsed_list:
-        slack_message = build_slack_message(parsed_list, distribution, params.repo_name)
+        slack_message = build_slack_message(parsed_list, distribution, params.repo_name, run_time)
         message_slack(params.slack_token, params.slack_channel_id, slack_message)
