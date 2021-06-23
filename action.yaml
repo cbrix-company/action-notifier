@@ -19,7 +19,7 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.message }}
     - ${{ inputs.message-type }}
     - ${{ inputs.slack-token }}
     - ${{ inputs.slack-channel }}
+    - ${{ inputs.message }}

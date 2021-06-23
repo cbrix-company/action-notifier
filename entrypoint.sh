@@ -1,2 +1,2 @@
 #!/bin/sh -l
-python /main.py --message $1 --message-type $2 --slack-token $3 --slack-channel-id $4
+python /main.py --message-type $1 --slack-token $2 --slack-channel-id $3 --message $4
