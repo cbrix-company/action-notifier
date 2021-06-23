@@ -9,6 +9,7 @@ logger.setLevel(logging.INFO)
 
 
 def message_slack(token, channel_id, msg):
+    print(msg)
     post_body = {
         'channel': channel_id,
         'blocks': json.loads(msg),
