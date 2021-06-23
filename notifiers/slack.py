@@ -11,7 +11,7 @@ logger.setLevel(logging.INFO)
 def message_slack(token, channel_id, msg):
     post_body = {
         'channel': channel_id,
-        'blocks': msg,
+        'blocks': json.loads(msg),
     }
 
     url = 'https://slack.com/api/chat.postMessage'
