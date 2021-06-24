@@ -1,3 +1,4 @@
+import http
 import json
 import logging
 
@@ -21,7 +22,7 @@ def message_slack(token, channel_id, msg):
     }
 
     response = requests.post(url, data=json.dumps(body), headers=headers)
-    if response.status_code != 200:
+    if response.status_code != http.HTTPStatus.OK:
         raise Exception(f'received \'{response.status_code}\' body: {response.content}')
 
     json_data = response.json()
