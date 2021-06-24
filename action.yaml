@@ -1,7 +1,7 @@
 name: 'Notifier'
 description: 'Notifies to Slack when Bandit issues are found'
 inputs:
-  message-file:
+  input-file:
     description: 'file with message contents'
     required: true
   message-type:
@@ -22,4 +22,4 @@ runs:
     - ${{ inputs.message-type }}
     - ${{ inputs.slack-token }}
     - ${{ inputs.slack-channel }}
-    - ${{ inputs.message-file }}
+    - ${{ inputs.input-file }}

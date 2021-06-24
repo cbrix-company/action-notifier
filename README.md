@@ -27,7 +27,7 @@ Supported channels:
   uses: cbrix-company/action-notifier@v1
   with:
     message-type: slack
-    message-file: steps.bandit-message.outputs.output-file
+    input-file: steps.bandit-message.outputs.output-file
     slack-token: ${{ secrets.SLACK_TOKEN }}
     slack-channel: ${{ secrets.SLACK_CHANNEL_ID }}
 ```
