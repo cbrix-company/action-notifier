@@ -1,23 +1,25 @@
-name: 'Bandit Notify'
+name: 'Notifier'
 description: 'Notifies to Slack when Bandit issues are found'
 inputs:
+  input-file:
+    description: 'file with message contents'
+    required: true
+  message-type:
+    description: "type of message e.g. 'slack'"
+    required: true
   slack-token:
     description: 'slack token'
-    required: true
+    required: false
+    default: '""'
   slack-channel:
     description: 'slack target channel'
-    required: true
-  output-file:
-    description: 'output file name'
-    required: true
-  repo-name:
-    description: 'name of the repo scanned from GITHUB_REPOSITORY'
-    required: true
+    required: false
+    default: '""'
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
+    - ${{ inputs.message-type }}
     - ${{ inputs.slack-token }}
     - ${{ inputs.slack-channel }}
-    - ${{ inputs.output-file }}
-    - ${{ inputs.repo-name }}
+    - ${{ inputs.input-file }}
