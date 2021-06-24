@@ -9,11 +9,8 @@ logger.setLevel(logging.INFO)
 
 
 def message_slack(token, channel_id, msg):
-    print(msg)
-    post_body = {
-        'channel': channel_id,
-        'blocks': json.loads(msg),
-    }
+    body = json.loads(msg)
+    body['channel'] = channel_id
 
     url = 'https://slack.com/api/chat.postMessage'
     logger.info('POST {0}'.format(url))
@@ -23,7 +20,7 @@ def message_slack(token, channel_id, msg):
         'Content-type': 'application/json; charset=utf-8',
     }
 
-    response = requests.post(url, data=json.dumps(post_body), headers=headers)
+    response = requests.post(url, data=json.dumps(body), headers=headers)
     if response.status_code != 200:
         raise Exception(f'received \'{response.status_code}\' body: {response.content}')
 
